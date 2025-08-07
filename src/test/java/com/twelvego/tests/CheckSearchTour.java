@@ -1,42 +1,53 @@
 package com.twelvego.tests;
 
 import com.twelvego.config.BaseTest;
-
-import org.junit.jupiter.api.AfterAll;
+import com.twelvego.pages.HeaderPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import java.util.List;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.beans.Transient;
-import com.twelvego.pages.HeaderPage;
+import java.time.Duration;
 
-
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckSearchTour extends BaseTest {
 
-private HeaderPage headerPage;
+    private HeaderPage headerPage;
 
     @BeforeEach
-void initPage() {
-    headerPage = new HeaderPage(driver);
-}
+    void initPage() {
+        headerPage = new HeaderPage(driver);
+    }
 
-@Test 
-public void checkSearchTourTest() {
+    @Test
+    public void checkSearchTourTest() {
+        // Ввод маршрута
+        headerPage.fieldFrom("Krabi");
+        headerPage.fieldTo("Pattaya");
 
-headerPage.fieldFrom("Krabi");
+        // Выбор первой даты (через календарь)
+        headerPage.getDateFirstButton().click();
+        headerPage.selectDateFromCalendarPlusDays(4);
 
-headerPage.fieldTo("Pattaya");
+        // Выбор второй даты (через календарь)
+        headerPage.getDateSecondButton().click();
+        headerPage.selectDateFromCalendarPlusDays(6);
 
-headerPage.dateFirst("Fri, Jul 11");
+        // Установка количества пассажиров
+        headerPage.setAdultsCount(3);
+        headerPage.setChildrenCount(3);
 
-headerPage.dateSecond("Thu, Aug 7");
+        // Нажатие кнопки поиска
+        headerPage.getSearchButton().click();
 
+        // Ожидание загрузки результатов
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-qa='result-card']")));
 
+        // Проверкарезультаты поиска отобразились
+        assertTrue(driver.findElement(By.cssSelector("[data-qa='result-card']")).isDisplayed(),
+                "Результаты поиска должны отображаться");
     }
 }
-

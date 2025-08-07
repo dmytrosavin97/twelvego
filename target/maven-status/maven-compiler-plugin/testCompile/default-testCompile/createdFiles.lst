@@ -1,2 +1,4 @@
+com\twelvego\tests\CheckSearchTour.class
 com\twelvego\tests\HeaderTest.class
 com\twelvego\config\BaseTest.class
+com\twelvego\pages\HeaderPage.class

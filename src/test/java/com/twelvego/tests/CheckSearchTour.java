@@ -31,7 +31,7 @@ public class CheckSearchTour extends BaseTest {
         headerPage.getDateFirstButton().click();
         headerPage.selectDateFromCalendarPlusDays(4);
 
-        // Выбор второй даты (через календарь)
+        // Выбор второй даты 
         headerPage.getDateSecondButton().click();
         headerPage.selectDateFromCalendarPlusDays(6);
 

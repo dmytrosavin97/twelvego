@@ -171,7 +171,7 @@ public class HeaderPage {
         currentCount--;
         wait.until(ExpectedConditions.textToBePresentInElement(counter, String.valueOf(currentCount)));
     }
-    }
+ }
 
     
     public void selectFieldPeopleRowPlus(int i) {

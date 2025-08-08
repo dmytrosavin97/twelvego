@@ -1,4 +1,4 @@
-package com.twelvego.tests;
+package com.twelvego;
 
 import com.twelvego.config.BaseTest;
 import com.twelvego.pages.HeaderPage;
@@ -8,10 +8,12 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import io.qameta.allure.junit5.AllureJunit5;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
@@ -20,6 +22,8 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@ExtendWith(AllureJunit5.class)
 
 @Epic("Хедер сайта")
 @Feature("Поля поиска и выбора даты")
@@ -33,8 +37,9 @@ public class HeaderTest extends BaseTest {
     void initPage() {
         headerPage = new HeaderPage(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
 
+    }
+     
 
     @Test
     

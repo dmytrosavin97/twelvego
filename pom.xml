@@ -1,7 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+    <modelVersion>4.0.0</modelVersion>
  
     <groupId>com.twelvego</groupId>
 <artifactId>twelvego</artifactId>
@@ -10,6 +12,10 @@
     <properties>
 <maven.compiler.source>17</maven.compiler.source>
 <maven.compiler.target>17</maven.compiler.target>
+<junit.jupiter.version>5.10.0</junit.jupiter.version>
+<junit.platform.version>1.10.0</junit.platform.version>
+<allure.version>2.24.0</allure.version>
+<slf4j.version>2.0.9</slf4j.version>
 </properties>
  
     <dependencies>
@@ -27,17 +33,25 @@
 <version>4.33.0</version>
 </dependency>
  
-        <!-- JUnit 5 -->
+        <!-- JUnit Jupiter (включает api и engine) -->
 <dependency>
 <groupId>org.junit.jupiter</groupId>
-<artifactId>junit-jupiter-api</artifactId>
-<version>5.13.1</version>
+<artifactId>junit-jupiter</artifactId>
+<version>${junit.jupiter.version}</version>
+<scope>test</scope>
+</dependency>
+ 
+        <!-- JUnit Platform Launcher и Engine для согласованности версий -->
+<dependency>
+<groupId>org.junit.platform</groupId>
+<artifactId>junit-platform-launcher</artifactId>
+<version>${junit.platform.version}</version>
 <scope>test</scope>
 </dependency>
 <dependency>
-<groupId>org.junit.jupiter</groupId>
-<artifactId>junit-jupiter-engine</artifactId>
-<version>5.13.1</version>
+<groupId>org.junit.platform</groupId>
+<artifactId>junit-platform-engine</artifactId>
+<version>${junit.platform.version}</version>
 <scope>test</scope>
 </dependency>
  
@@ -48,11 +62,19 @@
 <version>2.19.1</version>
 </dependency>
  
-        <!-- Allure -->
+        <!-- Allure JUnit 5 integration -->
 <dependency>
 <groupId>io.qameta.allure</groupId>
 <artifactId>allure-junit5</artifactId>
-<version>2.24.0</version>
+<version>${allure.version}</version>
+<scope>test</scope>
+</dependency>
+ 
+        <!-- SLF4J Simple Logger (чтобы убрать предупреждения) -->
+<dependency>
+<groupId>org.slf4j</groupId>
+<artifactId>slf4j-simple</artifactId>
+<version>${slf4j.version}</version>
 <scope>test</scope>
 </dependency>
 </dependencies>
@@ -63,7 +85,7 @@
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
 <artifactId>maven-surefire-plugin</artifactId>
-<version>3.5.3</version>
+<version>3.1.2</version>
 <configuration>
 <includes>
 <include>**/*Test.java</include>
@@ -71,13 +93,16 @@
 <include>**/*TestCase.java</include>
 </includes>
 <useModulePath>false</useModulePath>
+<providers>
+<provider>junit-platform</provider>
+</providers>
 <systemPropertyVariables>
 <allure.results.directory>allure-results</allure.results.directory>
 </systemPropertyVariables>
 </configuration>
 </plugin>
  
-            <!-- Allure Maven Plugin -->
+            <!-- Allure Maven Plugin для генерации отчетов -->
 <plugin>
 <groupId>io.qameta.allure</groupId>
 <artifactId>allure-maven</artifactId>
@@ -85,4 +110,5 @@
 </plugin>
 </plugins>
 </build>
+ 
 </project>

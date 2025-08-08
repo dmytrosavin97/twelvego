@@ -87,6 +87,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <artifactId>maven-surefire-plugin</artifactId>
 <version>3.1.2</version>
 <configuration>
+<argLine>
+            --add-opens java.base/java.lang=ALL-UNNAMED
+</argLine>
 <includes>
 <include>**/*Test.java</include>
 <include>**/*Tests.java</include>
@@ -97,7 +100,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <provider>junit-platform</provider>
 </providers>
 <systemPropertyVariables>
-<allure.results.directory>allure-results</allure.results.directory>
+<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
 </systemPropertyVariables>
 </configuration>
 </plugin>

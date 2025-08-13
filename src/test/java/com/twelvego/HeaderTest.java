@@ -81,19 +81,19 @@ public class HeaderTest extends BaseTest {
         headerPage.selectDateFromCalendarPlusDays(4);
     }
 
-    // @Test
+    @Test
 
-    // @Story("Поле 'DatepickerRangeButton'")
-    // @Severity(SeverityLevel.NORMAL)
-    // @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
+    @Story("Поле 'DatepickerRangeButton'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
 
-    // public void testDatepickerRangeButtonIsClickable() {
-    //     WebElement dateRangeButton = headerPage.getDateSecondButton();
-    //     assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
+    public void testDatepickerRangeButtonIsClickable() {
+        WebElement dateRangeButton = headerPage.getDateSecondButton();
+        assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
 
-    //     dateRangeButton.click();
-    //     headerPage.selectDateFromCalendarPlusDays(6);
-    // }
+        dateRangeButton.click();
+        headerPage.selectDateFromCalendarPlusDays(6);
+    }
 
 //     // @Test
 //     public void testPeopleButtonIsClickable() {

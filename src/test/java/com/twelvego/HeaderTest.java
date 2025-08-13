@@ -53,33 +53,33 @@ public class HeaderTest extends BaseTest {
         from.click();
     }
 
-    @Test
-
-    
-    @Story("Поле 'To'")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Поле 'To' кликабельно")
-
-    public void testToFieldIsClickable() {
-        WebElement to = headerPage.getToButton();
-        assertTrue(to.isDisplayed(), "Поле To должно отображаться");
-        to.click();
-    }
-
     // @Test
 
     
-    // @Story("Поле 'DatepickerButton'")
+    // @Story("Поле 'To'")
     // @Severity(SeverityLevel.NORMAL)
-    // @DisplayName("Поле 'DatepickerButton' кликабельно")
+    // @DisplayName("Поле 'To' кликабельно")
 
-    // public void testDatepickerButtonIsClickable() {
-    //     WebElement dateButton = headerPage.getDateFirstButton();
-    //     assertTrue(dateButton.isDisplayed(), "Кнопка первой даты должна отображаться");
-
-    //     dateButton.click();
-    //     headerPage.selectDateFromCalendarPlusDays(4);
+    // public void testToFieldIsClickable() {
+    //     WebElement to = headerPage.getToButton();
+    //     assertTrue(to.isDisplayed(), "Поле To должно отображаться");
+    //     to.click();
     // }
+
+    @Test
+
+    
+    @Story("Поле 'DatepickerButton'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Поле 'DatepickerButton' кликабельно")
+
+    public void testDatepickerButtonIsClickable() {
+        WebElement dateButton = headerPage.getDateFirstButton();
+        assertTrue(dateButton.isDisplayed(), "Кнопка первой даты должна отображаться");
+
+        dateButton.click();
+        headerPage.selectDateFromCalendarPlusDays(4);
+    }
 
     // @Test
 

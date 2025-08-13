@@ -53,18 +53,18 @@ public class HeaderTest extends BaseTest {
         from.click();
     }
 
-    // @Test
+    @Test
 
     
-    // @Story("Поле 'To'")
-    // @Severity(SeverityLevel.NORMAL)
-    // @DisplayName("Поле 'To' кликабельно")
+    @Story("Поле 'To'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Поле 'To' кликабельно")
 
-    // public void testToFieldIsClickable() {
-    //     WebElement to = headerPage.getToButton();
-    //     assertTrue(to.isDisplayed(), "Поле To должно отображаться");
-    //     to.click();
-    // }
+    public void testToFieldIsClickable() {
+        WebElement to = headerPage.getToButton();
+        assertTrue(to.isDisplayed(), "Поле To должно отображаться");
+        to.click();
+    }
 
     // @Test
 

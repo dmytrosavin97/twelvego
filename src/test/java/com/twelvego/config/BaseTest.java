@@ -21,7 +21,7 @@ public abstract class BaseTest {
  
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
-       // options.addArguments("--headless=new");
+        options.addArguments("--headless=new");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
  

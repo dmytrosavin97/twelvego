@@ -25,114 +25,28 @@ jobs:
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
  
-      - name: Install Chrome and dependencies
+      - name: Install essential Chrome dependencies
         run: |
-          # Update package list
           sudo apt-get update
-          # Install basic dependencies
-          sudo apt-get install -y \
-            wget \
-            unzip \
-            xvfb \
-            libxi6 \
-            libxss1 \
-            libnss3 \
-            libgconf-2-4 \
-            libxrandr2 \
-            libasound2 \
-            libpangocairo-1.0-0 \
-            libatk1.0-0 \
-            libcairo-gobject2 \
-            libgtk-3-0 \
-            libgdk-pixbuf2.0-0 \
-            fonts-liberation \
-            libappindicator3-1 \
-            libxcomposite1 \
-            libxcursor1 \
-            libxdamage1 \
-            libxfixes3 \
-            libxinerama1 \
-            libxrandr2 \
-            libxrender1 \
-            libxtst6 \
-            ca-certificates \
-            fonts-liberation \
-            libasound2 \
-            libatk-bridge2.0-0 \
-            libdrm2 \
-            libxcomposite1 \
-            libxdamage1 \
-            libxrandr2 \
-            libgbm1 \
-            libxss1 \
-            lsb-release
+          sudo apt-get install -y wget unzip xvfb
  
-      - name: Download and install Google Chrome
+      - name: Download and install Chrome
         run: |
-          # Download the latest Chrome
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          # Verify installation
-          google-chrome --version
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
  
-      - name: Set up display
+      - name: Start virtual display
         run: |
-          # Set up virtual display for headless testing
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
-          sleep 3
- 
-      - name: Set environment variables
-        run: |
-          echo "CHROME_BIN=/usr/bin/google-chrome" >> $GITHUB_ENV
+          Xvfb :99 -screen 0 1920x1080x24 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
  
-      - name: Run tests with retry mechanism
-        run: |
-          # Function to run tests with retry
-          run_tests_with_retry() {
-            local max_attempts=3
-            local attempt=1
-            while [ $attempt -le $max_attempts ]; do
-              echo "Test attempt $attempt of $max_attempts"
-              if mvn clean test -Dtest.parallel=false -Dmaven.test.failure.ignore=false; then
-                echo "Tests passed on attempt $attempt"
-                return 0
-              else
-                echo "Tests failed on attempt $attempt"
-                if [ $attempt -eq $max_attempts ]; then
-                  echo "All test attempts failed"
-                  return 1
-                else
-                  echo "Retrying in 10 seconds..."
-                  sleep 10
-                  attempt=$((attempt + 1))
-                fi
-              fi
-            done
-          }
-          # Run the tests
-          run_tests_with_retry
+      - name: Run Maven tests
+        run: mvn clean test
  
       - name: Upload test reports
-        uses: actions/upload-artifact@v4
         if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
-          path: |
-            target/surefire-reports/
-            target/screenshots/
-          retention-days: 30
- 
-      - name: Upload test results
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Maven Tests
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
+          path: target/surefire-reports/

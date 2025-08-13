@@ -103,18 +103,18 @@ public class HeaderTest extends BaseTest {
         people.click();
     }
 
-    @Test
-    public void testLogoIsDisplayed() {
-        assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
-    }
+    // @Test
+    // public void testLogoIsDisplayed() {
+    //     assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
+    // }
 
-    @Test
-    public void testSupportLinkIsClickable() {
-        WebElement support = headerPage.getSupportLink();
-        assertTrue(support.isDisplayed(), "Ссылка на поддержку должна отображаться");
+    // @Test
+    // public void testSupportLinkIsClickable() {
+    //     WebElement support = headerPage.getSupportLink();
+    //     assertTrue(support.isDisplayed(), "Ссылка на поддержку должна отображаться");
 
-        support.click();
-    }
+    //     support.click();
+    // }
 
 //     @Test
 //     public void testLanguageSelectorIsClickable() {

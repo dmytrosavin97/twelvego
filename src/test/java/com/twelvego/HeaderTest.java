@@ -95,18 +95,18 @@ public class HeaderTest extends BaseTest {
     //     headerPage.selectDateFromCalendarPlusDays(6);
     // }
 
-    @Test
-    public void testPeopleButtonIsClickable() {
-        WebElement people = headerPage.getPeopleButton();
-        assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
-
-        people.click();
-    }
-
     // @Test
-    // public void testLogoIsDisplayed() {
-    //     assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
+    // public void testPeopleButtonIsClickable() {
+    //     WebElement people = headerPage.getPeopleButton();
+    //     assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
+
+    //     people.click();
     // }
+
+    @Test
+    public void testLogoIsDisplayed() {
+        assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
+    }
 
     // @Test
     // public void testSupportLinkIsClickable() {

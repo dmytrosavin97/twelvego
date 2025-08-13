@@ -23,14 +23,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <dependency>
 <groupId>io.github.bonigarcia</groupId>
 <artifactId>webdrivermanager</artifactId>
-<version>6.1.0</version>
+<version>6.2.0</version>
 </dependency>
  
         <!-- Selenium -->
 <dependency>
 <groupId>org.seleniumhq.selenium</groupId>
 <artifactId>selenium-java</artifactId>
-<version>4.33.0</version>
+<version>4.34.0</version>
 </dependency>
  
         <!-- JUnit Jupiter (включает api и engine) -->

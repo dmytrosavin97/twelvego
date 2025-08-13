@@ -93,7 +93,7 @@ public class HeaderTest extends BaseTest {
 
     //     dateRangeButton.click();
     //     headerPage.selectDateFromCalendarPlusDays(6);
-    }
+    // }
 
     // @Test
     public void testPeopleButtonIsClickable() {

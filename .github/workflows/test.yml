@@ -1,38 +1,43 @@
 name: Selenium Tests
  
-on: 
-    #для кого сделать (какие условия)
+on:
   push:
-    # отправить изменения
     branches: [main, master]
-    #branches - кусок (история) кода. Main это газвание ветки (можем вливать без разрешения)
   pull_request:
-    #создание локальной ветки которая отличается от main. Об\удинени веток (создание куска кода чтобы влить в main) (нужно разрешение)
     branches: [main, master]
  
 jobs:
-    #работа
   test:
     runs-on: ubuntu-latest
-    #добавление на сервер (ubunto) CICD 
  
     steps:
-      - name: Checkout code # первый шаг
+      - name: Checkout code
         uses: actions/checkout@v3
  
-      - name: Set up JDK 17 # второй шаг (установка JAVA)
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
  
-      - name: Cache Maven packages  # третий шаг
-        uses: actions/cache@v3 #чтобы каждый раз заново не ставить мы указываем чтобы использовался кэш
+      - name: Cache Maven packages
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
  
-      - name: Build and run tests
-        run: mvn clean test
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4 libxss1 libnss3 libasound2 fonts-liberation libappindicator3-1 libatk-bridge2.0-0 libgtk-3-0
+ 
+      - name: Download and install Google Chrome
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+ 
+      - name: Run tests
+        run: |
+          mvn clean test

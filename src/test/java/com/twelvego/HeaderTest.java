@@ -95,7 +95,7 @@ public class HeaderTest extends BaseTest {
     //     headerPage.selectDateFromCalendarPlusDays(6);
     // }
 
-    // @Test
+    @Test
     public void testPeopleButtonIsClickable() {
         WebElement people = headerPage.getPeopleButton();
         assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");

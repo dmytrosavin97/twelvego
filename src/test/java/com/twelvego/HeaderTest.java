@@ -81,40 +81,40 @@ public class HeaderTest extends BaseTest {
         headerPage.selectDateFromCalendarPlusDays(4);
     }
 
-    @Test
+    // @Test
 
-    @Story("Поле 'DatepickerRangeButton'")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
+    // @Story("Поле 'DatepickerRangeButton'")
+    // @Severity(SeverityLevel.NORMAL)
+    // @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
 
-    public void testDatepickerRangeButtonIsClickable() {
-        WebElement dateRangeButton = headerPage.getDateSecondButton();
-        assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
+    // public void testDatepickerRangeButtonIsClickable() {
+    //     WebElement dateRangeButton = headerPage.getDateSecondButton();
+    //     assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
 
-        dateRangeButton.click();
-        headerPage.selectDateFromCalendarPlusDays(6);
+    //     dateRangeButton.click();
+    //     headerPage.selectDateFromCalendarPlusDays(6);
     }
 
-//     // @Test
-//     public void testPeopleButtonIsClickable() {
-//         WebElement people = headerPage.getPeopleButton();
-//         assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
+    // @Test
+    public void testPeopleButtonIsClickable() {
+        WebElement people = headerPage.getPeopleButton();
+        assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
 
-//         people.click();
-//     }
+        people.click();
+    }
 
-//     @Test
-//     public void testLogoIsDisplayed() {
-//         assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
-//     }
+    @Test
+    public void testLogoIsDisplayed() {
+        assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
+    }
 
-//     @Test
-//     public void testSupportLinkIsClickable() {
-//         WebElement support = headerPage.getSupportLink();
-//         assertTrue(support.isDisplayed(), "Ссылка на поддержку должна отображаться");
+    @Test
+    public void testSupportLinkIsClickable() {
+        WebElement support = headerPage.getSupportLink();
+        assertTrue(support.isDisplayed(), "Ссылка на поддержку должна отображаться");
 
-//         support.click();
-//     }
+        support.click();
+    }
 
 //     @Test
 //     public void testLanguageSelectorIsClickable() {

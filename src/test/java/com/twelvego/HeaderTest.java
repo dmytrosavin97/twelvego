@@ -40,7 +40,7 @@ public class HeaderTest extends BaseTest {
 
     }
      
-
+/////
     @Test
     
     @Story("Поле 'From'")
@@ -53,19 +53,19 @@ public class HeaderTest extends BaseTest {
         from.click();
     }
 
-    // @Test
+    @Test
 
     
-    // @Story("Поле 'To'")
-    // @Severity(SeverityLevel.NORMAL)
-    // @DisplayName("Поле 'To' кликабельно")
+    @Story("Поле 'To'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Поле 'To' кликабельно")
 
-    // public void testToFieldIsClickable() {
-    //     WebElement to = headerPage.getToButton();
-    //     assertTrue(to.isDisplayed(), "Поле To должно отображаться");
-    //     to.click();
-    // }
-
+    public void testToFieldIsClickable() {
+        WebElement to = headerPage.getToButton();
+        assertTrue(to.isDisplayed(), "Поле To должно отображаться");
+        to.click();
+    }
+/////////
     @Test
 
     
@@ -81,32 +81,32 @@ public class HeaderTest extends BaseTest {
         headerPage.selectDateFromCalendarPlusDays(4);
     }
 
-    // @Test
+    @Test
 
-    // @Story("Поле 'DatepickerRangeButton'")
-    // @Severity(SeverityLevel.NORMAL)
-    // @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
+    @Story("Поле 'DatepickerRangeButton'")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Поле 'DatepickerRangeButton' кликабельно")
 
-    // public void testDatepickerRangeButtonIsClickable() {
-    //     WebElement dateRangeButton = headerPage.getDateSecondButton();
-    //     assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
+    public void testDatepickerRangeButtonIsClickable() {
+        WebElement dateRangeButton = headerPage.getDateSecondButton();
+        assertTrue(dateRangeButton.isDisplayed(), "Кнопка второй даты должна отображаться");
 
-    //     dateRangeButton.click();
-    //     headerPage.selectDateFromCalendarPlusDays(6);
-    // }
+        dateRangeButton.click();
+        headerPage.selectDateFromCalendarPlusDays(6);
+    }
 
-    // @Test
-    // public void testPeopleButtonIsClickable() {
-    //     WebElement people = headerPage.getPeopleButton();
-    //     assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
+    @Test
+    public void testPeopleButtonIsClickable() {
+        WebElement people = headerPage.getPeopleButton();
+        assertTrue(people.isDisplayed(), "Кнопка выбора количества пассажиров должна отображаться");
 
-    //     people.click();
-    // }
+        people.click();
+    }
 
-    // @Test
-    // public void testLogoIsDisplayed() {
-    //     assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
-    // }
+    @Test
+    public void testLogoIsDisplayed() {
+        assertTrue(headerPage.getLogo().isDisplayed(), "Логотип должен отображаться");
+    }
 
     @Test
     public void testSupportLinkIsClickable() {
@@ -116,40 +116,39 @@ public class HeaderTest extends BaseTest {
         support.click();
     }
 
-//     @Test
-//     public void testLanguageSelectorIsClickable() {
-//         WebElement lang = headerPage.getLanguageSelector();
-//         assertTrue(lang.isDisplayed(), "Переключатель языка должен отображаться");
+   @Test
+public void testLanguageSelectorIsClickable() {
+    WebElement lang = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.cssSelector("span[data-qa='lang-selector']")));
+    assertTrue(lang.isDisplayed(), "Переключатель языка должен отображаться");
+    lang.click();
+    }
 
-//         lang.click();
-//     }
+    @Test
+public void testCurrencySelectorIsDisplayed() {
+    WebElement currency = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.cssSelector("span.curr-selector")));
+    assertTrue(currency.isDisplayed(), "Выбор валюты должен отображаться");
+    }
 
-//     @Test
-//     public void testCurrencySelectorIsDisplayed() {
-       
-//         WebElement currency = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                 By.cssSelector("span[data-v-299b278e]")));
-//         assertTrue(currency.isDisplayed(), "Выбор валюты должен отображаться");
-//     }
+    @Test
+    public void testFindTicketsButtonIsClickable() {
+        WebElement search = headerPage.getSearchButton();
+        assertTrue(search.isDisplayed(), "Кнопка поиска билетов должна отображаться");
 
-//     @Test
-//     public void testFindTicketsButtonIsClickable() {
-//         WebElement search = headerPage.getSearchButton();
-//         assertTrue(search.isDisplayed(), "Кнопка поиска билетов должна отображаться");
+        search.click();
+    }
+    @Test
+public void testInfantsBlockIsDisplayed() {
+    headerPage.getPeopleButton().click();
 
-//         search.click();
-//     }
-//     @Test
-// public void testInfantsBlockIsDisplayed() {
-//     headerPage.getPeopleButton().click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement infantsBlock = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-qa='people-infants']"))
+    );
 
-//     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//     WebElement infantsBlock = wait.until(
-//         ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-qa='people-infants']"))
-//     );
+    assertTrue(infantsBlock.isDisplayed(), "Блок Infants отображается");
 
-//     assertTrue(infantsBlock.isDisplayed(), "Блок Infants отображается");
-//* 
-
-}
+   }
+} 
 

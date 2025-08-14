@@ -21,10 +21,10 @@ public abstract class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
-        options.addArguments("--headless=new"); // стабильный headless режим
+        options.addArguments("--headless=new"); 
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080"); // фикс размеров экрана
+        options.addArguments("--window-size=1920,1080"); 
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));

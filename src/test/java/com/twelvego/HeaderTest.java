@@ -40,7 +40,6 @@ public class HeaderTest extends BaseTest {
 
     }
      
-/////
     @Test
     
     @Story("Поле 'From'")
@@ -65,7 +64,6 @@ public class HeaderTest extends BaseTest {
         assertTrue(to.isDisplayed(), "Поле To должно отображаться");
         to.click();
     }
-/////////
     @Test
 
     
